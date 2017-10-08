@@ -13,9 +13,16 @@ $request = ServerRequestFactory::fromGlobals();
 
 ### Action
 
-$name = $request->getQueryParams()['name'] ?? 'Guest';
+$path = $request->getUri()->getPath();
 
-$response = new HtmlResponse('Hello, ' . $name . '!');
+if ($path === '/') {
+    $name = $request->getQueryParams()['name'] ?? 'Guest';
+    $response = new HtmlResponse('Hello, ' . $name . '!');
+} elseif ($path === '/about') {
+    $response = new HtmlResponse('I am a simple site');
+} else {
+    $response = new HtmlResponse('Undefined page', 404);
+}
 
 ### Postprocessing
 
