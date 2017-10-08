@@ -15,10 +15,10 @@ require 'vendor/autoload.php';
 
 $routes = new RouteCollection();
 
-$routes->get('home', '/', new Action\HelloAction());
-$routes->get('about', '/about', new Action\AboutAction());
-$routes->get('blog', '/blog', new Action\Blog\IndexAction());
-$routes->get('blog_show', '/blog/{id}', new Action\Blog\ShowAction(), ['id' => '\d+']);
+$routes->get('home', '/', Action\HelloAction::class);
+$routes->get('about', '/about', Action\AboutAction::class);
+$routes->get('blog', '/blog', Action\Blog\IndexAction::class);
+$routes->get('blog_show', '/blog/{id}', Action\Blog\ShowAction::class, ['id' => '\d+']);
 
 $router = new Router($routes);
 
@@ -30,8 +30,9 @@ try {
     foreach ($result->getAttributes() as $attribute => $value) {
         $request = $request->withAttribute($attribute, $value);
     }
+    $handler = $result->getHandler();
     /** @var callable $action */
-    $action = $result->getHandler();
+    $action = is_string($handler) ? new $handler() : $handler;
     $response = $action($request);
 } catch (RequestNotMatchedException $e){
     $response = new HtmlResponse('Undefined page', 404);
