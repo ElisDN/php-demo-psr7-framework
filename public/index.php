@@ -3,7 +3,7 @@
 use Framework\Http\Request;
 
 chdir(dirname(__DIR__));
-require 'src/Framework/Http/Request.php';
+require 'vendor/autoload.php';
 
 ### Initialization
 
