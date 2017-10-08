@@ -1,0 +1,8 @@
+{
+    "config": {
+        "sort-packages": true
+    },
+    "require": {
+        "php": ">=7.1.0"
+    }
+}
