@@ -6,9 +6,13 @@
         "php": ">=7.1.0",
         "roave/security-advisories": "dev-master"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^6.4"
+    },
     "autoload": {
         "psr-4": {
-            "Framework\\": "src/Framework/"
+            "Framework\\": "src/Framework/",
+            "Tests\\": "tests/"
         }
     }
 }
