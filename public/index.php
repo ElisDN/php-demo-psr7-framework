@@ -3,6 +3,7 @@
 use App\Http\Action;
 use App\Http\Middleware;
 use Framework\Http\ActionResolver;
+use Framework\Http\Pipeline\Pipeline;
 use Framework\Http\Router\AuraRouterAdapter;
 use Framework\Http\Router\Exception\RequestNotMatchedException;
 use Psr\Http\Message\ServerRequestInterface;
@@ -26,14 +27,14 @@ $routes->get('home', '/', Action\HelloAction::class);
 $routes->get('about', '/about', Action\AboutAction::class);
 
 $routes->get('cabinet', '/cabinet', function (ServerRequestInterface $request) use ($params) {
-    $profiler = new Middleware\ProfilerMiddleware();
-    $auth = new Middleware\BasicAuthMiddleware($params['users']);
-    $cabinet = new Action\CabinetAction();
+    $pipeline = new Pipeline();
 
-    return $profiler($request, function (ServerRequestInterface $request) use ($auth, $cabinet) {
-        return $auth($request, function (ServerRequestInterface $request) use ($cabinet) {
-            return $cabinet($request);
-        });
+    $pipeline->pipe(new Middleware\ProfilerMiddleware());
+    $pipeline->pipe(new Middleware\BasicAuthMiddleware($params['users']));
+    $pipeline->pipe(new Action\CabinetAction());
+
+    return $pipeline($request, function () {
+        return new HtmlResponse('Undefined page', 404);
     });
 });
 
