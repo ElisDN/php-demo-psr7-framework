@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Action;
+use Framework\Http\ActionResolver;
 use Framework\Http\Router\Exception\RequestNotMatchedException;
 use Framework\Http\Router\RouteCollection;
 use Framework\Http\Router\Router;
@@ -21,6 +22,7 @@ $routes->get('blog', '/blog', Action\Blog\IndexAction::class);
 $routes->get('blog_show', '/blog/{id}', Action\Blog\ShowAction::class, ['id' => '\d+']);
 
 $router = new Router($routes);
+$resolver = new ActionResolver();
 
 ### Running
 
@@ -30,9 +32,7 @@ try {
     foreach ($result->getAttributes() as $attribute => $value) {
         $request = $request->withAttribute($attribute, $value);
     }
-    $handler = $result->getHandler();
-    /** @var callable $action */
-    $action = is_string($handler) ? new $handler() : $handler;
+    $action = $resolver->resolve($result->getHandler());
     $response = $action($request);
 } catch (RequestNotMatchedException $e){
     $response = new HtmlResponse('Undefined page', 404);
