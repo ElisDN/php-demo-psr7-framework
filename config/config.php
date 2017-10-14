@@ -1,9 +1,10 @@
 <?php
 
-return array_merge_recursive(
-    require __DIR__ . '/autoload/app.global.php',
-    require __DIR__ . '/autoload/auth.global.php',
-    require __DIR__ . '/autoload/app.local.php',
-    require __DIR__ . '/autoload/auth.local.php',
-    require __DIR__ . '/autoload/local.php'
+$configs = array_map(
+    function ($file) {
+        return require $file;
+    },
+    glob(__DIR__ . '/autoload/{{,*.}global,{,*.}local}.php', GLOB_BRACE)
 );
+
+return array_merge_recursive(...$configs);
