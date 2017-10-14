@@ -9,6 +9,7 @@
         "psr/container": "^1.0",
         "psr/http-message": "^1.0",
         "roave/security-advisories": "dev-master",
+        "zendframework/zend-config-aggregator": "^1.0",
         "zendframework/zend-diactoros": "^1.6",
         "zendframework/zend-servicemanager": "^3.3",
         "zendframework/zend-stratigility": "^2.1"
