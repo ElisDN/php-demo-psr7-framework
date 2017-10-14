@@ -5,18 +5,19 @@ namespace Framework\Http\Pipeline;
 use Interop\Http\Server\MiddlewareInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Zend\Stratigility\MiddlewarePipe;
 
 class MiddlewareResolver
 {
-    public function resolve($handler): callable
+    public function resolve($handler, ResponseInterface $responsePrototype): callable
     {
         if (\is_array($handler)) {
-            return $this->createPipe($handler);
+            return $this->createPipe($handler, $responsePrototype);
         }
 
         if (\is_string($handler)) {
             return function (ServerRequestInterface $request, ResponseInterface $response, callable $next) use ($handler) {
-                $middleware = $this->resolve(new $handler());
+                $middleware = $this->resolve(new $handler(), $response);
                 return $middleware($request, $response, $next);
             };
         }
@@ -44,11 +45,12 @@ class MiddlewareResolver
         throw new UnknownMiddlewareTypeException($handler);
     }
 
-    private function createPipe(array $handlers): Pipeline
+    private function createPipe(array $handlers, $responsePrototype): MiddlewarePipe
     {
-        $pipeline = new Pipeline();
+        $pipeline = new MiddlewarePipe();
+        $pipeline->setResponsePrototype($responsePrototype);
         foreach ($handlers as $handler) {
-            $pipeline->pipe($this->resolve($handler));
+            $pipeline->pipe($this->resolve($handler, $responsePrototype));
         }
         return $pipeline;
     }
