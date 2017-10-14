@@ -28,6 +28,11 @@ class Container
         return $this->results[$id];
     }
 
+    public function has($id): bool
+    {
+        return array_key_exists($id, $this->definitions);
+    }
+
     public function set($id, $value): void
     {
         if (array_key_exists($id, $this->results)) {
