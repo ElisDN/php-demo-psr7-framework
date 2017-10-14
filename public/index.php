@@ -34,7 +34,7 @@ $routes->get('blog_show', '/blog/{id}', Action\Blog\ShowAction::class)->tokens([
 $router = new AuraRouterAdapter($aura);
 
 $resolver = new MiddlewareResolver();
-$app = new Application($resolver, new Middleware\NotFoundHandler());
+$app = new Application($resolver, new Middleware\NotFoundHandler(), new Response());
 
 $app->pipe(new Middleware\ErrorHandlerMiddleware($params['debug']));
 $app->pipe(Middleware\CredentialsMiddleware::class);

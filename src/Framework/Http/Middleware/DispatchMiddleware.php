@@ -22,7 +22,7 @@ class DispatchMiddleware
         if (!$result = $request->getAttribute(Result::class)) {
             return $next($request);
         }
-        $middleware = $this->resolver->resolve($result->getHandler());
+        $middleware = $this->resolver->resolve($result->getHandler(), $response);
         return $middleware($request, $response, $next);
     }
 }

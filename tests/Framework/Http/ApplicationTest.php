@@ -1,8 +1,9 @@
 <?php
 
-namespace Tests\Framework\Http\Pipeline;
+namespace Tests\Framework\Http;
 
-use Framework\Http\Pipeline\Pipeline;
+use Framework\Http\Application;
+use Framework\Http\Pipeline\MiddlewareResolver;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -10,16 +11,16 @@ use Zend\Diactoros\Response;
 use Zend\Diactoros\Response\JsonResponse;
 use Zend\Diactoros\ServerRequest;
 
-class PipelineTest extends TestCase
+class ApplicationTest extends TestCase
 {
     public function testPipe(): void
     {
-        $pipeline = new Pipeline();
+        $app = new Application(new MiddlewareResolver(), new DefaultHandler(), new Response());
 
-        $pipeline->pipe(new Middleware1());
-        $pipeline->pipe(new Middleware2());
+        $app->pipe(new Middleware1());
+        $app->pipe(new Middleware2());
 
-        $response = $pipeline(new ServerRequest(), new Response(), new Last());
+        $response = $app->run(new ServerRequest(), new Response());
 
         $this->assertJsonStringEqualsJsonString(
             json_encode(['middleware-1' => 1, 'middleware-2' => 2]),
@@ -44,7 +45,7 @@ class Middleware2
     }
 }
 
-class Last
+class DefaultHandler
 {
     public function __invoke(ServerRequestInterface $request)
     {
