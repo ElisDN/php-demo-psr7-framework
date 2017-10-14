@@ -3,6 +3,7 @@
         "sort-packages": true
     },
     "require": {
-        "php": ">=7.1.0"
+        "php": ">=7.1.0",
+        "roave/security-advisories": "dev-master"
     }
 }
