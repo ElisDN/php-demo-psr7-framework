@@ -8,6 +8,10 @@
 
 <?php $this->params['title'] = 'About'; ?>
 
+<?php $this->beginBlock('meta'); ?>
+    <meta name="description" content="About Page description" />
+<?php $this->endBlock(); ?>
+
 <?php $this->beginBlock('breadcrumbs') ?>
     <ul class="breadcrumb">
         <li><a href="/">Home</a></li>
