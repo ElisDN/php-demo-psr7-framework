@@ -36,6 +36,7 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a href="<?= $this->encode($this->path('blog')) ?>"><i class="glyphicon glyphicon-book"></i> Blog</a></li>
                     <li><a href="<?= $this->encode($this->path('about')) ?>"><i class="glyphicon glyphicon-book"></i> About</a></li>
                     <li><a href="<?= $this->encode($this->path('cabinet')) ?>"><i class="glyphicon glyphicon-user"></i> Cabinet</a></li>
                 </ul>
