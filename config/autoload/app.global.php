@@ -6,6 +6,7 @@ use Framework\Http\Pipeline\MiddlewareResolver;
 use Framework\Http\Router\AuraRouterAdapter;
 use Framework\Http\Router\Router;
 use Framework\Template\TemplateRenderer;
+use Framework\Template\Twig\Extension\RouteExtension;
 use Framework\Template\Twig\TwigRenderer;
 use Psr\Container\ContainerInterface;
 
@@ -57,6 +58,8 @@ return [
                 if ($debug) {
                     $environment->addExtension(new Twig\Extension\DebugExtension());
                 }
+
+                $environment->addExtension($container->get(RouteExtension::class));
 
                 return $environment;
             },
