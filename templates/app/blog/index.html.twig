@@ -1,0 +1,30 @@
+{% extends 'layout/default.html.twig' %}
+
+{% block title %}Blog{% endblock %}
+
+{% block meta %}
+    <meta name="description" content="Blog Page description" />
+{% endblock %}
+
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li><a href="{{ path('home') }}">Home</a></li>
+        <li class="active">Blog</li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <h1>Blog</h1>
+
+    {% for post in posts %}
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="pull-right">{{ post.date|date('Y-m-d') }}</span>
+                <a href="{{ path('blog_show', {'id': post.id}) }}">{{ post.title }}</a>
+            </div>
+            <div class="panel-body">{{ post.content|nl2br }}</div>
+        </div>
+
+    {% endfor %}
+{% endblock %}

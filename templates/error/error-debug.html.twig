@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Error</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="app-content">
+    <main class="container">
+
+        <h1>Exception: {{ exception.getMessage() }}</h1>
+
+        <p>Code: {{ exception.getCode() }}</p>
+        <p>{{ exception.getFile() }} on line {{ exception.getLine() }}</p>
+        {% for trace in exception.getTrace() %}
+            <p>{{ trace['file'] }} on line {{ trace['line'] }}</p>
+        {% endfor %}
+
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% extends 'layout/columns.html.twig' %}
+
+{% block title %}Cabinet Page title{% endblock %}
+
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li><a href="{{ path('home') }}">Home</a></li>
+        <li class="active">Cabinet</li>
+    </ul>
+{% endblock %}
+
+{% block main %}
+    <h1>Cabinet of {{ name }}</h1>
+{% endblock %}
+
+{% block sidebar %}
+    <div class="panel panel-default">
+        <div class="panel-heading">Cabinet</div>
+        <div class="panel-body">
+            Cabinet navigation
+        </div>
+    </div>
+{% endblock %}

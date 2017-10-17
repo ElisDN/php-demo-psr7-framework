@@ -1,0 +1,19 @@
+{% extends 'layout/default.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-9">
+            {% block main %}{% endblock %}
+        </div>
+        <div class="col-md-3">
+            {% block sidebar %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">Site</div>
+                    <div class="panel-body">
+                        Site navigation
+                    </div>
+                </div>
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

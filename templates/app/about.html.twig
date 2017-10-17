@@ -1,0 +1,18 @@
+{% extends 'layout/columns.html.twig' %}
+
+{% block title %}About Page title{% endblock %}
+
+{% block meta %}
+    <meta name="description" content="About Page description" />
+{% endblock %}
+
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li><a href="{{ path('home') }}">Home</a></li>
+        <li class="active">About</li>
+    </ul>
+{% endblock %}
+
+{% block main %}
+    <h1>About the site</h1>
+{% endblock %}
