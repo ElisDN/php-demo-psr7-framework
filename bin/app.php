@@ -13,4 +13,9 @@ $container = require 'config/container.php';
 
 $cli = new Application('Application console');
 
+$commands = $container->get('config')['console']['commands'];
+foreach ($commands as $command) {
+    $cli->add($container->get($command));
+}
+
 $cli->run();
