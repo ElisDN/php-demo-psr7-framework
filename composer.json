@@ -10,6 +10,7 @@
         "psr/http-message": "^1.0",
         "psr/http-server-middleware": "^1.0",
         "psr/log": "^1.0",
+        "symfony/console": "^4.1",
         "twig/twig": "^2.4",
         "zendframework/zend-config-aggregator": "^1.0",
         "zendframework/zend-diactoros": "^1.7",
@@ -39,6 +40,7 @@
         "test": "phpunit --colors=always",
         "cs-check": "phpcs",
         "cs-fix": "phpcbf",
+        "app": "php bin/app.php --ansi",
         "development-enable": "ln -sr config/autoload/development.local.php.dist config/autoload/development.local.php",
         "development-disable": "rm config/autoload/development.local.php"
     }

@@ -1,9 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-use Framework\Console\Application;
-use Framework\Console\Input;
-use Framework\Console\Output;
+use Symfony\Component\Console\Application;
 
 chdir(dirname(__DIR__));
 require 'vendor/autoload.php';
@@ -13,11 +11,6 @@ require 'vendor/autoload.php';
  */
 $container = require 'config/container.php';
 
-$cli = new Application();
+$cli = new Application('Application console');
 
-$commands = $container->get('config')['console']['commands'];
-foreach ($commands as $command) {
-    $cli->add($container->get($command));
-}
-
-$cli->run(new Input($argv), new Output());
+$cli->run();
