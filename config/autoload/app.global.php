@@ -37,8 +37,14 @@ return [
             },
             ErrorResponseGenerator::class => function (ContainerInterface $container) {
                 return new PrettyErrorResponseGenerator(
-                    $container->get('config')['debug'],
-                    $container->get(TemplateRenderer::class)
+                    $container->get(TemplateRenderer::class),
+                    $container->get('config')['debug']
+                        ? ['error' => 'error/error-debug']
+                        : [
+                            '403' => 'error/403',
+                            '404' => 'error/404',
+                            'error' => 'error/error',
+                        ]
                 );
             },
         ],
