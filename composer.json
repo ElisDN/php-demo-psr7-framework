@@ -5,9 +5,11 @@
     "require": {
         "php": ">=7.1.0",
         "aura/router": "^3.1",
+        "monolog/monolog": "^1.23",
         "psr/container": "^1.0",
         "psr/http-message": "^1.0",
         "psr/http-server-middleware": "^1.0",
+        "psr/log": "^1.0",
         "twig/twig": "^2.4",
         "zendframework/zend-config-aggregator": "^1.0",
         "zendframework/zend-diactoros": "^1.7",

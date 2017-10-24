@@ -33,7 +33,8 @@ return [
             },
             ErrorHandlerMiddleware::class => function (ContainerInterface $container) {
                 return new ErrorHandlerMiddleware(
-                    $container->get(ErrorResponseGenerator::class)
+                    $container->get(ErrorResponseGenerator::class),
+                    $container->get(Psr\Log\LoggerInterface::class)
                 );
             },
             ErrorResponseGenerator::class => function (ContainerInterface $container) {
@@ -60,6 +61,15 @@ return [
                 $whoops->pushHandler(new Whoops\Handler\PrettyPageHandler());
                 $whoops->register();
                 return $whoops;
+            },
+            Psr\Log\LoggerInterface::class => function (ContainerInterface $container)
+            {
+                $logger = new Monolog\Logger('App');
+                $logger->pushHandler(new Monolog\Handler\StreamHandler(
+                    'var/log/application.log',
+                    $container->get('config')['debug'] ? Monolog\Logger::DEBUG : Monolog\Logger::WARNING
+                ));
+                return $logger;
             },
         ],
     ],
