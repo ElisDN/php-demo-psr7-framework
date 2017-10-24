@@ -8,32 +8,15 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Psr\Log\LoggerInterface;
 use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Diactoros\ServerRequest;
 
 class ErrorHandlerTest extends TestCase
 {
-    /**
-     * @var ErrorHandlerMiddleware
-     */
-    private $handler;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-        /**
-         * @var \PHPUnit_Framework_MockObject_MockObject|LoggerInterface $logger
-         */
-        $logger = $this->createMock(LoggerInterface::class);
-        $logger->method('error')->willReturn(null);
-
-        $this->handler = new ErrorHandlerMiddleware(new DummyGenerator(), $logger);
-    }
-
     public function testNone(): void
     {
-        $response = $this->handler->process(new ServerRequest(), new CorrectAction());
+        $handler = new ErrorHandlerMiddleware(new DummyGenerator());
+        $response = $handler->process(new ServerRequest(), new CorrectAction());
 
         self::assertEquals('Content', $response->getBody()->getContents());
         self::assertEquals(200, $response->getStatusCode());
@@ -41,7 +24,8 @@ class ErrorHandlerTest extends TestCase
 
     public function testException(): void
     {
-        $response = $this->handler->process(new ServerRequest(), new ErrorAction());
+        $handler = new ErrorHandlerMiddleware(new DummyGenerator());
+        $response = $handler->process(new ServerRequest(), new ErrorAction());
 
         self::assertEquals('Runtime Error', $response->getBody()->getContents());
         self::assertEquals(500, $response->getStatusCode());
