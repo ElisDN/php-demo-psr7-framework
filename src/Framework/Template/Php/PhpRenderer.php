@@ -108,7 +108,6 @@ class PhpRenderer implements TemplateRenderer
     public function encode($string): string
     {
         return htmlspecialchars($string, ENT_QUOTES | ENT_SUBSTITUTE);
-
     }
 
     public function __call($name, $arguments)
