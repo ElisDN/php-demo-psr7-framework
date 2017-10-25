@@ -19,7 +19,8 @@
     "require-dev": {
         "filp/whoops": "^2.2",
         "phpunit/phpunit": "^6.4",
-        "roave/security-advisories": "dev-master"
+        "roave/security-advisories": "dev-master",
+        "squizlabs/php_codesniffer": "^3.3"
     },
     "autoload": {
         "psr-4": {
@@ -31,7 +32,13 @@
     },
     "scripts": {
         "serve": "php -S 0.0.0.0:8080 -t public",
+        "check": [
+            "@cs-check",
+            "@test"
+        ],
         "test": "phpunit --colors=always",
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf",
         "development-enable": "ln -sr config/autoload/development.local.php.dist config/autoload/development.local.php",
         "development-disable": "rm config/autoload/development.local.php"
     }
