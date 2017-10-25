@@ -6,8 +6,6 @@ use Framework\Http\Pipeline\MiddlewareResolver;
 use Framework\Http\Router\AuraRouterAdapter;
 use Framework\Http\Router\Router;
 use Framework\Template\TemplateRenderer;
-use Framework\Template\Twig\Extension\RouteExtension;
-use Framework\Template\Twig\TwigRenderer;
 use Psr\Container\ContainerInterface;
 
 return [
@@ -35,33 +33,6 @@ return [
                     $container->get('config')['debug'],
                     $container->get(TemplateRenderer::class)
                 );
-            },
-            TemplateRenderer::class => function (ContainerInterface $container) {
-                return new TwigRenderer($container->get(Twig\Environment::class), '.html.twig');
-            },
-            Twig\Environment::class => function(ContainerInterface $container)
-            {
-                $templateDir = 'templates';
-                $cacheDir = 'var/cache/twig';
-                $debug = $container->get('config')['debug'];
-
-                $loader = new Twig\Loader\FilesystemLoader();
-                $loader->addPath($templateDir);
-
-                $environment = new Twig\Environment($loader, [
-                    'cache' => $debug ? false : $cacheDir,
-                    'debug' => $debug,
-                    'strict_variables' => $debug,
-                    'auto_reload' => $debug,
-                ]);
-
-                if ($debug) {
-                    $environment->addExtension(new Twig\Extension\DebugExtension());
-                }
-
-                $environment->addExtension($container->get(RouteExtension::class));
-
-                return $environment;
             },
         ],
     ],
