@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "cc70a2260388b5d9b402d2db6a77f605",
+    "content-hash": "30d3eb6b32fcf19c4e72d5826519ae01",
     "packages": [
         {
             "name": "aura/router",
@@ -2726,7 +2726,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.1.0"
+        "php": ">=7.1.0",
+        "ext-pdo": "^7.1"
     },
     "platform-dev": []
 }

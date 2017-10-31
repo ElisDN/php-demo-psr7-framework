@@ -4,16 +4,20 @@ namespace App\ReadModel\Views;
 
 class PostView
 {
+    /**
+     * @var int
+     */
     public $id;
+    /**
+     * @var \DateTimeImmutable
+     */
     public $date;
+    /**
+     * @var string
+     */
     public $title;
+    /**
+     * @var string
+     */
     public $content;
-
-    public function __construct($id, \DateTimeImmutable $date, $title, $content)
-    {
-        $this->id = $id;
-        $this->date = $date;
-        $this->title = $title;
-        $this->content = $content;
-    }
 }
