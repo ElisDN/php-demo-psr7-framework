@@ -1,0 +1,46 @@
+{% set current = pager.getPage() %}
+{% set pagesCount = pager.getPagesCount() %}
+
+{% if pagesCount > 0 %}
+
+    <ul class="pagination">
+        {% if current > 1 %}
+            <li class="page-item">
+                <a class="page-link" href="{{ current == 2 ? path(main_route) : path(route, {'page': current - 1}) }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </span>
+            </li>
+        {% endif %}
+
+        {% for page in 1 .. pagesCount %}
+            <li class="page-item {% if page == current %}active{% endif %}">
+                <a class="page-link" href="{{ page == 1 ? path(main_route) : path(route, {'page': page}) }}">{{ page }}</a>
+            </li>
+        {% endfor %}
+
+        {% if current < pagesCount %}
+            <li class="page-item">
+                <a class="page-link" href="{{ path(route, {'page': current + 1}) }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </span>
+            </li>
+        {% endif %}
+    </ul>
+
+{% endif %}
