@@ -2,8 +2,8 @@
 
 namespace Framework\Http\Pipeline;
 
-use Framework\Container\ContainerInterface;
 use Interop\Http\Server\MiddlewareInterface;
+use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Stratigility\MiddlewarePipe;
