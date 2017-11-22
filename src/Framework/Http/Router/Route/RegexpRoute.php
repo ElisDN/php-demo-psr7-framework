@@ -1,10 +1,11 @@
 <?php
 
-namespace Framework\Http\Router;
+namespace Framework\Http\Router\Route;
 
+use Framework\Http\Router\Result;
 use Psr\Http\Message\ServerRequestInterface;
 
-class Route
+class RegexpRoute implements Route
 {
     private $name;
     private $pattern;
@@ -20,13 +21,13 @@ class Route
         $this->tokens = $tokens;
         $this->methods = $methods;
     }
-    
+
     public function match(ServerRequestInterface $request): ?Result
     {
         if ($this->methods && !\in_array($request->getMethod(), $this->methods, true)) {
             return null;
         }
-        
+
         $pattern = preg_replace_callback('~\{([^\}]+)\}~', function ($matches) {
             $argument = $matches[1];
             $replace = $this->tokens[$argument] ?? '[^}]+';
