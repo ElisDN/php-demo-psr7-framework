@@ -20,7 +20,7 @@ class Container
         $definition = $this->definitions[$id];
 
         if ($definition instanceof \Closure) {
-            $this->results[$id] = $definition();
+            $this->results[$id] = $definition($this);
         } else {
             $this->results[$id] = $definition;
         }
