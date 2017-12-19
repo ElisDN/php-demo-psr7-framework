@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa372314e099e56235c5e6ab8e0c5d6b",
+    "content-hash": "08ef8c9b27686d8192936774a54bebe3",
     "packages": [
         {
             "name": "aura/router",
@@ -54,6 +54,37 @@
                 "routing"
             ],
             "time": "2017-03-02T16:34:47+00:00"
+        },
+        {
+            "name": "container-interop/container-interop",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/container-interop/container-interop.git",
+                "reference": "79cbf1341c22ec75643d841642dd5d6acd83bdb8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/container-interop/container-interop/zipball/79cbf1341c22ec75643d841642dd5d6acd83bdb8",
+                "reference": "79cbf1341c22ec75643d841642dd5d6acd83bdb8",
+                "shasum": ""
+            },
+            "require": {
+                "psr/container": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Interop\\Container\\": "src/Interop/Container/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
+            "homepage": "https://github.com/container-interop/container-interop",
+            "time": "2017-02-14T19:40:03+00:00"
         },
         {
             "name": "http-interop/http-middleware",
@@ -579,6 +610,114 @@
                 "zf2"
             ],
             "time": "2016-06-30T19:48:38+00:00"
+        },
+        {
+            "name": "zendframework/zend-servicemanager",
+            "version": "3.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/zend-servicemanager.git",
+                "reference": "c3036efb81f71bfa36cc9962ee5d4474f36581d0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/zend-servicemanager/zipball/c3036efb81f71bfa36cc9962ee5d4474f36581d0",
+                "reference": "c3036efb81f71bfa36cc9962ee5d4474f36581d0",
+                "shasum": ""
+            },
+            "require": {
+                "container-interop/container-interop": "^1.2",
+                "php": "^5.6 || ^7.0",
+                "psr/container": "^1.0",
+                "zendframework/zend-stdlib": "^3.1"
+            },
+            "provide": {
+                "container-interop/container-interop-implementation": "^1.2",
+                "psr/container-implementation": "^1.0"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "^1.6",
+                "ocramius/proxy-manager": "^1.0 || ^2.0",
+                "phpbench/phpbench": "^0.10.0",
+                "phpunit/phpunit": "^5.7 || ^6.0.6",
+                "zendframework/zend-coding-standard": "~1.0.0"
+            },
+            "suggest": {
+                "ocramius/proxy-manager": "ProxyManager 1.* to handle lazy initialization of services",
+                "zendframework/zend-stdlib": "zend-stdlib ^2.5 if you wish to use the MergeReplaceKey or MergeRemoveKey features in Config instances"
+            },
+            "bin": [
+                "bin/generate-deps-for-config-factory",
+                "bin/generate-factory-for-class"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.3-dev",
+                    "dev-develop": "3.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Zend\\ServiceManager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "homepage": "https://github.com/zendframework/zend-servicemanager",
+            "keywords": [
+                "service-manager",
+                "servicemanager",
+                "zf"
+            ],
+            "time": "2017-03-01T22:08:02+00:00"
+        },
+        {
+            "name": "zendframework/zend-stdlib",
+            "version": "3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/zend-stdlib.git",
+                "reference": "debedcfc373a293f9250cc9aa03cf121428c8e78"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/zend-stdlib/zipball/debedcfc373a293f9250cc9aa03cf121428c8e78",
+                "reference": "debedcfc373a293f9250cc9aa03cf121428c8e78",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0"
+            },
+            "require-dev": {
+                "athletic/athletic": "~0.1",
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "^2.6.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1-dev",
+                    "dev-develop": "3.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Zend\\Stdlib\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "homepage": "https://github.com/zendframework/zend-stdlib",
+            "keywords": [
+                "stdlib",
+                "zf2"
+            ],
+            "time": "2016-09-13T14:38:50+00:00"
         },
         {
             "name": "zendframework/zend-stratigility",
