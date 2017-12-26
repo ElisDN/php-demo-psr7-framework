@@ -45,15 +45,7 @@ try {
         $request = $request->withAttribute($attribute, $value);
     }
     $handler = $result->getHandler();
-    if (is_array($handler)) {
-        $middleware = new Pipeline();
-        foreach ($handler as $item) {
-            $middleware->pipe($resolver->resolve($item));
-        }
-    } else {
-        $middleware = $resolver->resolve($handler);
-    }
-    $pipeline->pipe($middleware);
+    $pipeline->pipe($resolver->resolve($handler));
 } catch (RequestNotMatchedException $e){}
 
 $response = $pipeline($request, new Middleware\NotFoundHandler());
