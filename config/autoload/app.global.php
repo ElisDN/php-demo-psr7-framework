@@ -32,8 +32,8 @@ return [
             Middleware\ErrorHandlerMiddleware::class => function (ContainerInterface $container) {
                 return new Middleware\ErrorHandlerMiddleware($container->get('config')['debug']);
             },
-            TemplateRenderer::class => function () {
-                return new PhpRenderer('templates');
+            TemplateRenderer::class => function (ContainerInterface $container) {
+                return new PhpRenderer('templates', $container->get(Router::class));
             },
         ],
     ],
