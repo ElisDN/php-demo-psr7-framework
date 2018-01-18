@@ -4,7 +4,7 @@
  */
 ?>
 
-<?php $this->extend = 'layout/default'; ?>
+<?php $this->extend('layout/default'); ?>
 
 <?php $this->params['title'] = 'About'; ?>
 
