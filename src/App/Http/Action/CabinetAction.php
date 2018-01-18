@@ -20,7 +20,7 @@ class CabinetAction
     {
         $username = $request->getAttribute(BasicAuthMiddleware::ATTRIBUTE);
 
-        return new HtmlResponse($this->template->render('cabinet', [
+        return new HtmlResponse($this->template->render('app/cabinet', [
             'name' => $username
         ]));
     }

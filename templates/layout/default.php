@@ -1,9 +1,14 @@
+<?php
+/**
+ * @var \Framework\Template\PhpRenderer $this
+ */
+?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>About the site - App</title>
+    <title><?= $this->params['title'] ?? '' ?> - App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
     <style>
@@ -40,14 +45,7 @@
 
 <div class="app-content">
     <main class="container">
-
-        <ul class="breadcrumb">
-            <li><a href="/">Home</a></li>
-            <li class="active">About</li>
-        </ul>
-
-        <h1>About the site</h1>
-
+        <?= $content ?>
     </main>
 </div>
 
