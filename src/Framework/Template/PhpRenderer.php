@@ -42,8 +42,12 @@ class PhpRenderer implements TemplateRenderer
 
     public function endBlock(): void
     {
+        $content =  ob_get_clean();
         $name = $this->blockNames->pop();
-        $this->blocks[$name] = ob_get_clean();
+        if (array_key_exists($name, $this->blocks)) {
+            return;
+        }
+        $this->blocks[$name] = $content;
     }
 
     public function renderBlock($name): string
