@@ -6,7 +6,7 @@
 
 <?php $this->extend('layout/default'); ?>
 
-<?php $this->params['title'] = 'About'; ?>
+<?php $this->beginBlock('title') ?>About<?php $this->endBlock() ?>
 
 <?php $this->beginBlock('meta'); ?>
     <meta name="description" content="About Page description" />

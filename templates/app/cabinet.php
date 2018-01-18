@@ -7,7 +7,7 @@
 
 <?php $this->extend('layout/columns'); ?>
 
-<?php $this->params['title'] = 'Cabinet'; ?>
+<?php $this->beginBlock('title') ?>Cabinet<?php $this->endBlock() ?>
 
 <?php $this->beginBlock('breadcrumbs') ?>
     <ul class="breadcrumb">
