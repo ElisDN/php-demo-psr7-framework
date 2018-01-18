@@ -23,14 +23,10 @@ class PhpRenderer implements TemplateRenderer
         $this->extend = null;
         require $templateFile;
         $content = ob_get_clean();
-
         if (!$this->extend) {
             return $content;
         }
-
-        return $this->render($this->extend, [
-            'content' => $content,
-        ]);
+        return $this->render($this->extend);
     }
 
     public function extend($view): void
