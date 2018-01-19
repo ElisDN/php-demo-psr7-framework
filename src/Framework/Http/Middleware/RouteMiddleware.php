@@ -7,15 +7,31 @@ use Framework\Http\Router\Result;
 use Framework\Http\Router\Router;
 use Psr\Http\Message\ServerRequestInterface;
 
+/**
+ * Class RouteMiddleware
+ *
+ * @package Framework\Http\Middleware
+ */
 class RouteMiddleware
 {
     private $router;
 
+    /**
+     * RouteMiddleware constructor.
+     *
+     * @param Router $router
+     */
     public function __construct(Router $router)
     {
         $this->router = $router;
     }
 
+    /**
+     * @param ServerRequestInterface $request
+     * @param callable               $next
+     *
+     * @return mixed
+     */
     public function __invoke(ServerRequestInterface $request, callable $next)
     {
         try {

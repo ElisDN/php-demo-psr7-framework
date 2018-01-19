@@ -15,6 +15,13 @@ class ErrorHandlerMiddleware
         $this->debug = $debug;
     }
 
+    /**
+     * @param ServerRequestInterface $request
+     * @param callable               $next
+     *
+     * @return HtmlResponse|JsonResponse
+     * @throws \InvalidArgumentException
+     */
     public function __invoke(ServerRequestInterface $request, callable $next)
     {
         try {

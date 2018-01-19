@@ -7,6 +7,13 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class CredentialsMiddleware
 {
+    /**
+     * @param ServerRequestInterface $request
+     * @param callable               $next
+     *
+     * @return ResponseInterface
+     * @throws \InvalidArgumentException
+     */
     public function __invoke(ServerRequestInterface $request, callable $next)
     {
         /** @var ResponseInterface $response */

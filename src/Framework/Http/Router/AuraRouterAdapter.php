@@ -9,15 +9,31 @@ use Framework\Http\Router\Exception\RequestNotMatchedException;
 use Framework\Http\Router\Exception\RouteNotFoundException;
 use Psr\Http\Message\ServerRequestInterface;
 
+/**
+ * Class AuraRouterAdapter
+ *
+ * @package Framework\Http\Router
+ */
 class AuraRouterAdapter implements Router
 {
     private $aura;
 
+    /**
+     * AuraRouterAdapter constructor.
+     *
+     * @param RouterContainer $aura
+     */
     public function __construct(RouterContainer $aura)
     {
         $this->aura = $aura;
     }
 
+    /**
+     * @param ServerRequestInterface $request
+     *
+     * @return Result
+     * @throws \Framework\Http\Router\Exception\RequestNotMatchedException
+     */
     public function match(ServerRequestInterface $request): Result
     {
         $matcher = $this->aura->getMatcher();
@@ -28,6 +44,13 @@ class AuraRouterAdapter implements Router
         throw new RequestNotMatchedException($request);
     }
 
+    /**
+     * @param       $name
+     * @param array $params
+     *
+     * @return string
+     * @throws \Framework\Http\Router\Exception\RouteNotFoundException
+     */
     public function generate($name, array $params): string
     {
         $generator = $this->aura->getGenerator();
@@ -38,6 +61,13 @@ class AuraRouterAdapter implements Router
         }
     }
 
+    /**
+     * @param RouteData $data
+     *
+     * @throws \InvalidArgumentException
+     * @throws \Aura\Router\Exception\ImmutableProperty
+     * @throws \Aura\Router\Exception\RouteAlreadyExists
+     */
     public function addRoute(RouteData $data): void
     {
         $route = new Route();
