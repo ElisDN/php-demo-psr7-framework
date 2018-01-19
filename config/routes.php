@@ -1,11 +1,15 @@
 <?php
 
-use App\Http\Action;
+use App\Http\Action\AboutAction;
+use App\Http\Action\Blog\IndexAction;
+use App\Http\Action\Blog\ShowAction;
+use App\Http\Action\CabinetAction;
+use App\Http\Action\HelloAction;
 
 /** @var \Framework\Http\Application $app */
 
-$app->get('home', '/', Action\HelloAction::class);
-$app->get('about', '/about', Action\AboutAction::class);
-$app->get('cabinet', '/cabinet', Action\CabinetAction::class);
-$app->get('blog', '/blog', Action\Blog\IndexAction::class);
-$app->get('blog_show', '/blog/{id}', Action\Blog\ShowAction::class, ['tokens' => ['id' => '\d+']]);
+$app->get('home', '/', HelloAction::class);
+$app->get('about', '/about', AboutAction::class);
+$app->get('cabinet', '/cabinet', CabinetAction::class);
+$app->get('blog', '/blog', IndexAction::class);
+$app->get('blog_show', '/blog/{id}', ShowAction::class, ['tokens' => ['id' => '\d+']]);
