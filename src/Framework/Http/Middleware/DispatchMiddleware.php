@@ -6,17 +6,33 @@ use Framework\Http\Pipeline\MiddlewareResolver;
 use Framework\Http\Router\Result;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Zend\Stratigility\MiddlewarePipe;
 
+/**
+ * Class DispatchMiddleware
+ *
+ * @package Framework\Http\Middleware
+ */
 class DispatchMiddleware
 {
     private $resolver;
 
+    /**
+     * DispatchMiddleware constructor.
+     *
+     * @param MiddlewareResolver $resolver
+     */
     public function __construct(MiddlewareResolver $resolver)
     {
         $this->resolver = $resolver;
     }
 
+    /**
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface      $response
+     * @param callable               $next
+     *
+     * @return mixed
+     */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next)
     {
         /** @var Result $result */

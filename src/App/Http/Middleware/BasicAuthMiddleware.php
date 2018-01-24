@@ -16,6 +16,14 @@ class BasicAuthMiddleware
         $this->users = $users;
     }
 
+    /**
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface      $response
+     * @param callable               $next
+     *
+     * @return static
+     * @throws \InvalidArgumentException
+     */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next)
     {
         $username = $request->getServerParams()['PHP_AUTH_USER'] ?? null;

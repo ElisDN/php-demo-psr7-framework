@@ -7,6 +7,13 @@ use Zend\Diactoros\Response\JsonResponse;
 
 class ShowAction
 {
+    /**
+     * @param ServerRequestInterface $request
+     * @param callable               $next
+     *
+     * @return JsonResponse
+     * @throws \InvalidArgumentException
+     */
     public function __invoke(ServerRequestInterface $request, callable $next)
     {
         $id = $request->getAttribute('id');

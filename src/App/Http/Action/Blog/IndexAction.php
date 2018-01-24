@@ -6,6 +6,10 @@ use Zend\Diactoros\Response\JsonResponse;
 
 class IndexAction
 {
+    /**
+     * @return JsonResponse
+     * @throws \InvalidArgumentException
+     */
     public function __invoke()
     {
         return new JsonResponse([
