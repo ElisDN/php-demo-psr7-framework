@@ -1,8 +1,9 @@
+@import "./variables";
 @import "~font-awesome/scss/font-awesome";
 @import '~bootstrap/scss/bootstrap';
 
 body {
-    padding-top: 70px;
+    padding-top: 4.2rem;
 }
 
 h1 {
@@ -21,4 +22,8 @@ h1 {
 
 .app-footer {
     padding-bottom: 1em;
+}
+
+.navbar {
+    background-color: #0c64a2;
 }
