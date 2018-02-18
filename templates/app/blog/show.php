@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \Framework\Template\PhpRenderer $this
+ * @var \Framework\Template\Php\PhpRenderer $this
  * @var \App\ReadModel\Views\PostView $post
  */
 
