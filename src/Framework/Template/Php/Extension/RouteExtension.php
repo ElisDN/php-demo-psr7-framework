@@ -4,6 +4,7 @@ namespace Framework\Template\Php\Extension;
 
 use Framework\Http\Router\Router;
 use Framework\Template\Php\Extension;
+use Framework\Template\Php\SimpleFunction;
 
 class RouteExtension extends Extension
 {
@@ -17,7 +18,7 @@ class RouteExtension extends Extension
     public function getFunctions(): array
     {
         return [
-            'path' => [$this, 'generatePath'],
+            new SimpleFunction('path', [$this, 'generatePath']),
         ];
     }
 
