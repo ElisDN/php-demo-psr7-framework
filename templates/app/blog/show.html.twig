@@ -1,9 +1,9 @@
 {% extends 'layout/default.html.twig' %}
 
-{% block title %}{{ post.title }}{% endblock %}
+{% block title %}{{ post.meta.title }}{% endblock %}
 
 {% block meta %}
-    <meta name="description" content="{{ post.title }}" />
+    <meta name="description" content="{{ post.meta.description }}" />
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -17,10 +17,22 @@
 {% block content %}
     <h1>{{ post.title }}</h1>
 
-    <div class="panel panel-default">
+    <div class="panel panel-primary">
         <div class="panel-heading">
-            {{ post.date|date('Y-m-d') }}
+            {{ post.createDate|date('Y-m-d') }}
         </div>
-        <div class="panel-body">{{ post.content|nl2br }}</div>
+        <div class="panel-body">{{ post.content.full|nl2br }}</div>
     </div>
+
+    <h2>Comments</h2>
+
+    {% for comment in post.comments %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="pull-right">{{ comment.date|date('Y-m-d') }}</span>
+                {{ comment.author }}
+            </div>
+            <div class="panel-body">{{ comment.text|nl2br }}</div>
+        </div>
+    {% endfor %}
 {% endblock %}

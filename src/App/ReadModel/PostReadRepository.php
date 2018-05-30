@@ -2,53 +2,50 @@
 
 namespace App\ReadModel;
 
-use App\ReadModel\Views\PostView;
+use App\Entity\Post\Post;
+use Doctrine\ORM\EntityRepository;
 
 class PostReadRepository
 {
-    private $pdo;
+    private $repository;
 
-    public function __construct(\PDO $pdo)
+    public function __construct(EntityRepository $repository)
     {
-        $this->pdo = $pdo;
+        $this->repository = $repository;
     }
 
     public function countAll(): int
     {
-        $stmt = $this->pdo->query('SELECT COUNT(id) FROM posts');
-        return $stmt->fetchColumn();
+        return $this->repository
+            ->createQueryBuilder('p')
+            ->select('COUNT(p)')
+            ->getQuery()
+            ->getSingleScalarResult();
     }
 
     /**
      * @param int $offset
      * @param int $limit
-     * @return PostView[]
+     * @return Post[]
      */
-    public function getAll(int $offset, int $limit): array
+    public function all(int $offset, int $limit): array
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM posts ORDER BY id DESC LIMIT ? OFFSET ?');
-        $stmt->execute([$limit, $offset]);
-
-        return array_map([$this, 'hydratePost'], $stmt->fetchAll());
+        return $this->repository
+            ->createQueryBuilder('p')
+            ->select('p')
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+            ->orderBy('p.createDate', 'DESC')
+            ->getQuery()
+            ->getResult();
     }
 
-    public function find($id): ?PostView
+    /**
+     * @param int $id
+     * @return Post|object|null
+     */
+    public function find(int $id): ?Post
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM posts WHERE id = ?');
-        $stmt->execute([$id]);
-
-        return ($row = $stmt->fetch()) ? $this->hydratePost($row) : null;
-    }
-
-    private function hydratePost(array $row): PostView
-    {
-        $view = new PostView();
-
-        $view->id = (int)$row['id'];
-        $view->date = new \DateTimeImmutable($row['date']);
-        $view->title = $row['title'];
-        $view->content = $row['content'];
-
-        return $view;
+        return $this->repository->find($id);
     }
 }

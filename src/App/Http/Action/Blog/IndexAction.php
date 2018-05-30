@@ -31,7 +31,7 @@ class IndexAction implements RequestHandlerInterface
             self::PER_PAGE
         );
 
-        $posts = $this->posts->getAll(
+        $posts = $this->posts->all(
             $pager->getOffset(),
             $pager->getLimit()
         );

@@ -107,4 +107,17 @@ class Post
     {
         return $this->meta;
     }
+
+    /**
+     * @return Comment[]
+     */
+    public function getComments(): array
+    {
+        return $this->comments->toArray();
+    }
+
+    public function getCommentsCount(): int
+    {
+        return $this->comments->count();
+    }
 }
