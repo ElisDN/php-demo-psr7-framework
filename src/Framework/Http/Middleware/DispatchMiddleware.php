@@ -20,7 +20,7 @@ class DispatchMiddleware
     {
         /** @var Result $result */
         if (!$result = $request->getAttribute(Result::class)) {
-            return $next($request);
+            return $next($request, $response);
         }
         $middleware = $this->resolver->resolve($result->getHandler(), $response);
         return $middleware($request, $response, $next);
