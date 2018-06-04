@@ -26,7 +26,7 @@ return [
                 return new AuraRouterAdapter(new Aura\Router\RouterContainer());
             },
             MiddlewareResolver::class => function (ContainerInterface $container) {
-                return new MiddlewareResolver($container);
+                return new MiddlewareResolver($container, new Zend\Diactoros\Response());
             },
             Middleware\ErrorHandlerMiddleware::class => function (ContainerInterface $container) {
                 return new Middleware\ErrorHandlerMiddleware(

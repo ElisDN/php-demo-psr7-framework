@@ -32,9 +32,9 @@ class Application implements MiddlewareInterface, RequestHandlerInterface
     public function pipe($path, $middleware = null): MiddlewarePipe
     {
         if ($middleware === null) {
-            return $this->pipeline->pipe($this->resolver->resolve($path, $this->responsePrototype));
+            return $this->pipeline->pipe($this->resolver->resolve($path));
         }
-        return $this->pipeline->pipe($path, $this->resolver->resolve($middleware, $this->responsePrototype));
+        return $this->pipeline->pipe($path, $this->resolver->resolve($middleware));
     }
 
     private function route($name, $path, $handler, array $methods, array $options = []): void

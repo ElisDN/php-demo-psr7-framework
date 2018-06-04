@@ -26,7 +26,7 @@ class ApplicationTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->resolver = new MiddlewareResolver(new DummyContainer());
+        $this->resolver = new MiddlewareResolver(new DummyContainer(), new Response());
         $this->router = $this->createMock(Router::class);
     }
 
