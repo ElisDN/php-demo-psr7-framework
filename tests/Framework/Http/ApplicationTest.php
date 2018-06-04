@@ -8,6 +8,8 @@ use Framework\Http\Router\Router;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 use Zend\Diactoros\Response;
 use Zend\Diactoros\Response\JsonResponse;
 use Zend\Diactoros\ServerRequest;
@@ -32,7 +34,7 @@ class ApplicationTest extends TestCase
 
     public function testPipe(): void
     {
-        $app = new Application($this->resolver, $this->router, new DefaultHandler(), new Response());
+        $app = new Application($this->resolver, $this->router, new DefaultHandler());
 
         $app->pipe(new Middleware1());
         $app->pipe(new Middleware2());
@@ -46,25 +48,25 @@ class ApplicationTest extends TestCase
     }
 }
 
-class Middleware1
+class Middleware1 implements MiddlewareInterface
 {
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next)
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        return $next($request->withAttribute('middleware-1', 1));
+        return $handler->handle($request->withAttribute('middleware-1', 1));
     }
 }
 
-class Middleware2
+class Middleware2 implements MiddlewareInterface
 {
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next)
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        return $next($request->withAttribute('middleware-2', 2));
+        return $handler->handle($request->withAttribute('middleware-2', 2));
     }
 }
 
-class DefaultHandler
+class DefaultHandler implements RequestHandlerInterface
 {
-    public function __invoke(ServerRequestInterface $request)
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
         return new JsonResponse($request->getAttributes());
     }

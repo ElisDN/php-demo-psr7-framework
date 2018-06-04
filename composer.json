@@ -5,14 +5,14 @@
     "require": {
         "php": ">=7.1.0",
         "aura/router": "^3.1",
-        "http-interop/http-middleware": "^0.5.0",
         "psr/container": "^1.0",
         "psr/http-message": "^1.0",
+        "psr/http-server-middleware": "^1.0",
         "twig/twig": "^2.4",
         "zendframework/zend-config-aggregator": "^1.0",
-        "zendframework/zend-diactoros": "^1.6",
+        "zendframework/zend-diactoros": "^1.7",
         "zendframework/zend-servicemanager": "^3.3",
-        "zendframework/zend-stratigility": "^2.1"
+        "zendframework/zend-stratigility": "^3.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.4",

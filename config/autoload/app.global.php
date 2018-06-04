@@ -18,8 +18,7 @@ return [
                 return new Application(
                     $container->get(MiddlewareResolver::class),
                     $container->get(Router::class),
-                    $container->get(Middleware\NotFoundHandler::class),
-                    new Zend\Diactoros\Response()
+                    $container->get(Middleware\NotFoundHandler::class)
                 );
             },
             Router::class => function () {
