@@ -4,10 +4,8 @@ namespace Framework\Http\Pipeline;
 
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Zend\Stratigility\Middleware\CallableMiddlewareDecorator;
 use Zend\Stratigility\Middleware\DoublePassMiddlewareDecorator;
 use Zend\Stratigility\Middleware\RequestHandlerMiddleware;
 use Zend\Stratigility\MiddlewarePipe;
@@ -30,10 +28,7 @@ class MiddlewareResolver
         }
 
         if (\is_string($handler) && $this->container->has($handler)) {
-            return new CallableMiddlewareDecorator(function (ServerRequestInterface $request, RequestHandlerInterface $next) use ($handler) {
-                $middleware = $this->resolve($this->container->get($handler));
-                return $middleware->process($request, $next);
-            });
+            return new LazyMiddlewareDecorator($this, $this->container, $handler);
         }
 
         if ($handler instanceof MiddlewareInterface) {
