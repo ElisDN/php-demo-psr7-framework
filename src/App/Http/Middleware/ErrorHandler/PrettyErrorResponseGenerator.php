@@ -5,7 +5,9 @@ namespace App\Http\Middleware\ErrorHandler;
 use Framework\Template\TemplateRenderer;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Zend\Diactoros\Response;
 use Zend\Diactoros\Response\HtmlResponse;
+use Zend\Stratigility\Utils;
 
 class PrettyErrorResponseGenerator implements ErrorResponseGenerator
 {
@@ -20,20 +22,11 @@ class PrettyErrorResponseGenerator implements ErrorResponseGenerator
 
     public function generate(\Throwable $e, ServerRequestInterface $request): ResponseInterface
     {
-        $code = self::getStatusCode($e);
+        $code = Utils::getStatusCode($e, new Response());
         return new HtmlResponse($this->template->render($this->getView($code), [
             'request' => $request,
             'exception' => $e,
         ]), $code);
-    }
-
-    private static function getStatusCode(\Throwable $e) : int
-    {
-        $code = $e->getCode();
-        if ($code >= 400 && $code < 600) {
-            return $code;
-        }
-        return 500;
     }
 
     private function getView($code): string
