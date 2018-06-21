@@ -2,19 +2,16 @@
 
 namespace Infrastructure\App;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Psr\Container\ContainerInterface;
 
 class PDOFactory
 {
     public function __invoke(ContainerInterface $container)
     {
-        $config = $container->get('config')['pdo'];
+        /** @var EntityManagerInterface $em */
+        $em = $container->get(EntityManagerInterface::class);
 
-        return new \PDO(
-            $config['dsn'],
-            $config['username'],
-            $config['password'],
-            $config['options']
-        );
+        return $em->getConnection()->getWrappedConnection();
     }
 }
