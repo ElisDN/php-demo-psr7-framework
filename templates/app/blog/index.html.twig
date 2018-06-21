@@ -8,8 +8,8 @@
 
 {% block breadcrumbs %}
     <ul class="breadcrumb">
-        <li><a href="{{ path('home') }}">Home</a></li>
-        <li class="active">Blog</li>
+        <li class="breadcrumb-item"><a href="{{ path('home') }}">Home</a></li>
+        <li class="breadcrumb-item active">Blog</li>
     </ul>
 {% endblock %}
 
@@ -18,12 +18,12 @@
 
     {% for post in posts %}
 
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <span class="pull-right">{{ post.date|date('Y-m-d') }}, {{ post.commentsCount }} comments</span>
+        <div class="card mb-3">
+            <div class="card-header">
+                <span class="float-right">{{ post.date|date('Y-m-d') }}, {{ post.commentsCount }} comments</span>
                 <a href="{{ path('blog_show', {'id': post.id}) }}">{{ post.title }}</a>
             </div>
-            <div class="panel-body">{{ post.preview|nl2br }}</div>
+            <div class="card-body">{{ post.preview|nl2br }}</div>
         </div>
 
     {% endfor %}
