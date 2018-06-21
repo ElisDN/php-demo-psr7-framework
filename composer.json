@@ -6,6 +6,7 @@
         "php": ">=7.1.0",
         "ext-PDO": "^7.1",
         "aura/router": "^3.1",
+        "dasprid/container-interop-doctrine": "^1.1",
         "monolog/monolog": "^1.23",
         "psr/container": "^1.0",
         "psr/http-message": "^1.0",
