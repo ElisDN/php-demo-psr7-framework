@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d65e70cb288ef17dd164e52c16a200ff",
+    "content-hash": "be76da0f71652bf246365bea4884f498",
     "packages": [
         {
             "name": "aura/router",
@@ -1552,6 +1552,49 @@
                 "psr-3"
             ],
             "time": "2016-10-10T12:19:37+00:00"
+        },
+        {
+            "name": "stormiix/laravel-mix-twig-extension",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Stormiix/laravel-mix-twig-extension.git",
+                "reference": "302838a8d4ba435af502dc54abee6752bc5750fb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Stormiix/laravel-mix-twig-extension/zipball/302838a8d4ba435af502dc54abee6752bc5750fb",
+                "reference": "302838a8d4ba435af502dc54abee6752bc5750fb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0",
+                "twig/twig": "~2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Stormiix\\Twig\\Extension\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Laravel Mix twig extension",
+            "keywords": [
+                "extension",
+                "laravel",
+                "mix",
+                "php",
+                "twig"
+            ],
+            "time": "2018-04-01T12:46:21+00:00"
         },
         {
             "name": "symfony/console",
@@ -3971,6 +4014,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "stormiix/laravel-mix-twig-extension": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": false,

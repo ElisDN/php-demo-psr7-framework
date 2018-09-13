@@ -13,6 +13,7 @@
         "psr/http-message": "^1.0",
         "psr/http-server-middleware": "^1.0",
         "psr/log": "^1.0",
+        "stormiix/laravel-mix-twig-extension": "dev-master",
         "symfony/console": "^4.1",
         "twig/twig": "^2.4",
         "zendframework/zend-config-aggregator": "^1.0",
