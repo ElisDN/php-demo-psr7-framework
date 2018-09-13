@@ -4,7 +4,6 @@ return [
     'dependencies' => [
         'factories'  => [
             Doctrine\ORM\EntityManagerInterface::class => ContainerInteropDoctrine\EntityManagerFactory::class,
-            PDO::class => Infrastructure\App\PDOFactory::class,
         ],
     ],
 
@@ -15,6 +14,12 @@ return [
                 'metadata_cache' => 'filesystem',
                 'query_cache' => 'filesystem',
                 'hydration_cache' => 'filesystem',
+            ],
+        ],
+        'connection' => [
+            'orm_default' => [
+                'driver_class' => \Doctrine\DBAL\Driver\PDOSqlite\Driver::class,
+                'pdo' => PDO::class,
             ],
         ],
         'driver' => [
