@@ -20,10 +20,10 @@
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <span class="pull-right">{{ post.createDate|date('Y-m-d') }}, {{ post.commentsCount }} comments</span>
+                <span class="pull-right">{{ post.date|date('Y-m-d') }}, {{ post.commentsCount }} comments</span>
                 <a href="{{ path('blog_show', {'id': post.id}) }}">{{ post.title }}</a>
             </div>
-            <div class="panel-body">{{ post.content.short|nl2br }}</div>
+            <div class="panel-body">{{ post.preview|nl2br }}</div>
         </div>
 
     {% endfor %}

@@ -19,9 +19,9 @@
 
     <div class="panel panel-primary">
         <div class="panel-heading">
-            {{ post.createDate|date('Y-m-d') }}
+            {{ post.date|date('Y-m-d') }}
         </div>
-        <div class="panel-body">{{ post.content.full|nl2br }}</div>
+        <div class="panel-body">{{ post.content|nl2br }}</div>
     </div>
 
     <h2>Comments</h2>
