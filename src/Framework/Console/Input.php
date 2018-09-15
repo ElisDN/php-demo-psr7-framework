@@ -15,4 +15,13 @@ class Input
     {
         return $this->args[$index] ?? '';
     }
+
+    public function choose(string $prompt, array $options): string
+    {
+        do {
+            fwrite(\STDOUT, $prompt . ' [' . implode(',', $options) . ']: ');
+            $choose = trim(fgets(\STDIN));
+        } while (!\in_array($choose, $options, true));
+        return $choose;
+    }
 }

@@ -18,12 +18,7 @@ class CacheClearCommand
         $alias = $input->getArgument(0);
 
         if (empty($alias)) {
-            $options = array_merge(['all'], array_keys($this->paths));
-            do {
-                fwrite(\STDOUT, 'Choose path [' . implode(',', $options) . ']: ');
-                $choose = trim(fgets(\STDIN));
-            } while (!\in_array($choose, $options, true));
-            $alias = $choose;
+            $alias = $input->choose('Choose path', array_merge(['all'], array_keys($this->paths)));
         }
 
         if ($alias === 'all') {
