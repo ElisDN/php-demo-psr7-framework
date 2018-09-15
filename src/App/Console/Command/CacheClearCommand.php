@@ -2,6 +2,8 @@
 
 namespace App\Console\Command;
 
+use Framework\Console\Input;
+
 class CacheClearCommand
 {
     private $paths = [
@@ -9,11 +11,11 @@ class CacheClearCommand
         'db' => 'var/cache/db',
     ];
 
-    public function execute($args): void
+    public function execute(Input $input): void
     {
         echo 'Clearing cache' . PHP_EOL;
 
-        $alias = $args[0] ?? '';
+        $alias = $input->getArgument(0);
 
         if (empty($alias)) {
             $options = array_merge(['all'], array_keys($this->paths));
