@@ -13,15 +13,24 @@ class CacheClearCommand
     {
         echo 'Clearing cache' . PHP_EOL;
 
-        $alias = $args[0] ?? null;
+        $alias = $args[0] ?? '';
 
-        if (!empty($alias)) {
+        if (empty($alias)) {
+            $options = array_merge(['all'], array_keys($this->paths));
+            do {
+                fwrite(\STDOUT, 'Choose path [' . implode(',', $options) . ']: ');
+                $choose = trim(fgets(\STDIN));
+            } while (!\in_array($choose, $options, true));
+            $alias = $choose;
+        }
+
+        if ($alias === 'all') {
+            $paths = $this->paths;
+        } else {
             if (!array_key_exists($alias, $this->paths)) {
                 throw new \InvalidArgumentException('Unknown path alias "' . $alias . '"');
             }
             $paths = [$alias => $this->paths[$alias]];
-        } else {
-            $paths = $this->paths;
         }
 
         foreach ($paths as $path) {
