@@ -7,7 +7,7 @@ use Framework\Console\Command;
 use Framework\Console\Input;
 use Framework\Console\Output;
 
-class CacheClearCommand implements Command
+class CacheClearCommand extends Command
 {
     private $paths;
     private $files;
@@ -16,6 +16,10 @@ class CacheClearCommand implements Command
     {
         $this->paths = $paths;
         $this->files = $files;
+
+        $this
+            ->setName('cache:clear')
+            ->setDescription('Clear cache');
     }
 
     public function execute(Input $input, Output $output): void
