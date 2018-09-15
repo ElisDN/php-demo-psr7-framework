@@ -13,4 +13,6 @@ $container = require 'config/container.php';
 
 $command = $container->get(CacheClearCommand::class);
 
-$command->execute();
+$args = array_slice($argv, 1);
+
+$command->execute($args);

@@ -9,13 +9,11 @@ class CacheClearCommand
         'db' => 'var/cache/db',
     ];
 
-    public function execute(): void
+    public function execute($args): void
     {
-        global $argv;
-
         echo 'Clearing cache' . PHP_EOL;
 
-        $alias = $argv[1] ?? null;
+        $alias = $args[0] ?? null;
 
         if (!empty($alias)) {
             if (!array_key_exists($alias, $this->paths)) {
