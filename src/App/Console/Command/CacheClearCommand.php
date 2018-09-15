@@ -7,10 +7,12 @@ use Framework\Console\Output;
 
 class CacheClearCommand
 {
-    private $paths = [
-        'twig' => 'var/cache/twig',
-        'db' => 'var/cache/db',
-    ];
+    private $paths;
+
+    public function __construct(array $paths)
+    {
+        $this->paths = $paths;
+    }
 
     public function execute(Input $input, Output $output): void
     {
