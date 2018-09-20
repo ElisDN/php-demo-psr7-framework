@@ -16,12 +16,8 @@ class Input
         return $this->args[$index] ?? '';
     }
 
-    public function choose(string $prompt, array $options): string
+    public function read(): string
     {
-        do {
-            fwrite(\STDOUT, $prompt . ' [' . implode(',', $options) . ']: ');
-            $choose = trim(fgets(\STDIN));
-        } while (!\in_array($choose, $options, true));
-        return $choose;
+        return fgets(\STDIN);
     }
 }
