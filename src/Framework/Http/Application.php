@@ -43,7 +43,7 @@ class Application implements MiddlewareInterface, RequestHandlerInterface
 
     public function any($name, $path, $handler, array $options = []): void
     {
-        $this->route($name, $path, $handler, $options);
+        $this->route($name, $path, $handler, ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS', 'HEAD'], $options);
     }
 
     public function get($name, $path, $handler, array $options = []): void
